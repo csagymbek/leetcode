@@ -17,16 +17,29 @@
 // 1 <= str1.length, str2.length <= 1000
 // str1 and str2 consist of English uppercase letters.
 
+// const gcdOfStrings = (str1, str2) => {
+//     let long = str1.length > str2.length ? str1 : str2;
+//     let short = str1.length > str2.length ? str2 : str1;
+//     if (str1.length === str2.length && str1 === str2) {
+//         return str1;
+//     }
+//     if (!long.startsWith(short)) {
+//         return "";
+//     }
+//     return gcdOfStrings(long.substring(short.length), short);
+// }
+
 const gcdOfStrings = (str1, str2) => {
     let long = str1.length > str2.length ? str1 : str2;
     let short = str1.length > str2.length ? str2 : str1;
     if (str1.length === str2.length && str1 === str2) {
         return str1;
     }
-    if (!long.startsWith(short)) {
+    if (long.startsWith(short)) {
+        return gcdOfStrings(long.substring(short.length), short);
+    } else {
         return "";
     }
-    return gcdOfStrings(long.substring(short.length), short);
 }
 
 console.log(gcdOfStrings("ABCABC", "ABC")); // "ABC"
