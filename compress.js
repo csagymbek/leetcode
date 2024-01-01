@@ -99,7 +99,7 @@ const compress = (chars) => {
     }
     return index;
 }
-// 1
+// 2
 console.log(compress(["a", "a", "b", "b", "c", "c", "c"]));// ["a","2","b","2","c","3"] 6
 // console.log(compress(["a"]));// ["a"] 1
 // console.log(compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]));// ["a","b","1","2"] 4
