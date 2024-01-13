@@ -35,23 +35,35 @@
 //     return false;
 // }
 
-const isSubsequence = (s, t) => {
-    if (!s.length) {
-        return true;
-    }
-    let sPointer = 0;
-    let tPointer = 0;
-    while (tPointer < t.length) {
-        if (t.charAt(tPointer) === s.charAt(sPointer)) {
-            sPointer++;
-            if (sPointer === s.length) {
-                return true;
-            }
-        }
-        tPointer++
-    }
-    return false;
-}
+// const isSubsequence = (s, t) => {
+//     if (!s.length) {
+//         return true;
+//     }
+//     let sPointer = 0;
+//     let tPointer = 0;
+//     while (tPointer < t.length) {
+//         if (t.charAt(tPointer) === s.charAt(sPointer)) {
+//             sPointer++;
+//             if (sPointer === s.length) {
+//                 return true;
+//             }
+//         }
+//         tPointer++
+//     }
+//     return false;
+// }
+
+// const isSubsequence = (s, t) => {
+//     let counter = 0;
+//     for (let i = 0; i < t.length; i++) {
+//         if (s[counter] === t[i]) {
+//             counter++;
+//         }
+//     }
+//     return counter === s.length;
+// }
+
+console.log(Number.MIN_SAFE_INTEGER);
 
 console.log(isSubsequence("abc", "ahbgdc"));// true
 console.log(isSubsequence("axc", "ahbgdc"));// false
