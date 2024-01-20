@@ -23,11 +23,88 @@
 
 // Follow up: Can you solve it in O(n) time and O(1) space?
 
+// var backspaceCompare = function (s, t) {
+//     return build(s) === build(t);
+// };
+
+// const build = (s) => {
+//     s = s.split("");
+//     console.log(s);
+//     let res = [];
+//     for (let i = 0; i < s.length; i++) {
+//         if (s[i] !== "#") {
+//             res.push(s[i]);
+//         } else if (res.length) {
+//             res.pop();
+//         }
+//     }
+//     return res.join("");
+// }
+
+// const backspaceCompare = (s, t) => {
+//     let i = s.length - 1;
+//     let j = t.length - 1;
+//     let skipS = 0;
+//     let skipT = 0;
+//     while (i >= 0 || j >= 0) {
+//         while (i >= 0) {
+//             if (s.charAt(i) === "#") {
+//                 skipS++;
+//                 i--;
+//             } else if (skipS > 0) {
+//                 skipS--;
+//                 i--;
+//             } else {
+//                 break;
+//             }
+//         }
+//         while (j >= 0) {
+//             if (t.charAt(j) === "#") {
+//                 skipT++;
+//                 j--;
+//             } else if (skipT > 0) {
+//                 skipT--;
+//                 j--;
+//             } else {
+//                 break;
+//             }
+//         }
+//         if (i >= 0 && j >= 0 && s.charAt(i) !== t.charAt(j)) {
+//             return false;
+//         }
+//         if ((i >= 0) !== (j >= 0)) {
+//             return false;
+//         }
+//         i--;
+//         j--;
+//     }
+//     return true;
+// }
+
 const backspaceCompare = (s, t) => {
-    for (let i = 0, j = s.length - 1; i < s.length)
-        return
+    let resS = [];
+    let resT = [];
+    for (let i = 0; i < Math.max(s.length, t.length); i++) {
+        if (s[i] !== "#") {
+            console.log(s[i]);
+            resS.push(s[i]);
+        } else {
+            console.log(s[i]);
+            console.log(resS);
+            resS.pop(s[i]);
+            console.log(resS);
+        }
+        if (t[i] !== "#") {
+            resT.push(t[i]);
+        } else {
+            resT.pop(t[i]);
+        }
+    }
+    console.log(resS.join(""));
+    console.log(resT.join(""));
+    return resS.join("") === resT.join("");
 }
 
 console.log(backspaceCompare("ab#c", "ad#c"));// true
-console.log(backspaceCompare("ab##", "c#d#"));// true
-console.log(backspaceCompare("a#c", "b"));// false
+// console.log(backspaceCompare("ab##", "c#d#"));// true
+// console.log(backspaceCompare("a#c", "b"));// false
