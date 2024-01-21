@@ -17,14 +17,15 @@
 // name and typed consist of only lowercase English letters.
 
 const isLongPressedName = (name, typed) => {
-    if (typed.length < name.length) return false;
-    let j = 0;
-    for (let i = 0; i < typed.length; i++) {
-        if (typed[i] === name[j]) {
-            j++;
-        } else if (typed[i])
+    let i = 0;
+    for (let j = 0; j < typed.length; j++) {
+        if (name[i] === typed[j]) {
+            i++;
+        } else if (j === 0 || typed[j] !== typed[j - 1]) {
+            return false;
+        }
     }
-    return j === name.length;
+    return i === name.length;
 }
 
 console.log(isLongPressedName("alex", "aaleex"));// true
