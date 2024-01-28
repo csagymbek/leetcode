@@ -29,6 +29,33 @@
 // Both arrays contain unique ids.
 // Both arrays are in strictly ascending order by id.
 
-const mergeArrays = (nums1, nums2) => {
+cvar mergeArrays = function (nums1, nums2) {
+    let res = [];
+    let i = 0;
+    let j = 0;
+    while (i < nums1.length && j < nums2.length) {
+        if (nums1[i][0] === nums2[j][0]) {
+            res.push([nums1[i][0], nums1[i][1] + nums2[j][1]]);
+            i++;
+            j++;
+        } else if (nums1[i][0] > nums2[j][0]) {
+            res.push([nums2[j][0], nums2[j][1]]);
+            j++;
+        } else {
+            res.push([nums1[i][0], nums1[i][1]]);
+            i++;
+        }
+    }
+    while (i < nums1.length) {
+        res.push([nums1[i][0], nums1[i][1]]);
+        i++;
+    }
+    while (j < nums2.length) {
+        res.push([nums2[j][0], nums2[j][1]]);
+        j++;
+    }
+    return res;
+};
 
-}
+console.log(mergeArrays([[1, 2], [2, 3], [4, 5]], [[1, 4], [3, 2], [4, 1]]));// [[1,6],[2,3],[3,2],[4,6]]
+console.log(mergeArrays([[2, 4], [3, 6], [5, 5]], [[1, 3], [4, 3]]));// [[1,3],[2,4],[3,6],[4,3],[5,5]]
