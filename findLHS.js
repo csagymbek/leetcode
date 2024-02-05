@@ -21,23 +21,44 @@
 // -109 <= nums[i] <= 109
 
 const findLHS = (nums) => {
-    let obj = {};
     let max = 0;
+    let flag = false;
     for (let i = 0; i < nums.length; i++) {
-        obj[nums[i]] = (obj[nums[i]] || 0) + 1;
-    }
-    console.log(obj);
-    console.log(Object.keys(obj));
-    for (let key of Object.keys(obj)) {
-        console.log(key);
-        console.log(obj[key]);
-        console.log(obj.hasOwnProperty(key + 1));
-        if (obj[key - 1]) {
-            max = Math.max(max, obj[key] + obj[key - 1]);
+        let count = 0;
+        for (let j = 0; j < nums.length; j++) {
+            if (nums[j] === nums[i]) {
+                count++;
+            }
+            if (nums[j] + 1 === nums[i]) {
+                count++;
+                flag = true;
+            }
+        }
+        if (flag) {
+            max = Math.max(max, count);
         }
     }
     return max;
 }
+
+// const findLHS = (nums) => {
+//     let obj = {};
+//     let max = 0;
+//     for (let i = 0; i < nums.length; i++) {
+//         obj[nums[i]] = (obj[nums[i]] || 0) + 1;
+//     }
+//     console.log(obj);
+//     console.log(Object.keys(obj));
+//     for (let key of Object.keys(obj)) {
+//         console.log(key);
+//         console.log(obj[key]);
+//         console.log(obj.hasOwnProperty(key + 1));
+//         if (obj[key - 1]) {
+//             max = Math.max(max, obj[key] + obj[key - 1]);
+//         }
+//     }
+//     return max;
+// }
 
 console.log(findLHS([1, 3, 2, 2, 5, 2, 3, 7]));// 5
 console.log(findLHS([1, 2, 3, 4]));// 2
