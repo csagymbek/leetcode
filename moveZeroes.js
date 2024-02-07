@@ -29,12 +29,38 @@
 //     return [...ar, ...zero];
 // }
 
+// var moveZeroes = function(nums) {
+//     let j = 0;
+//    for(let i = 0; i < nums.length; i++) {
+//        if(nums[i] !== 0) {
+//            nums[j++] = nums[i];
+//        }
+//    }
+//    for(let i = j; i < nums.length; i++) {
+//        nums[i] = 0;
+//    }
+//    return nums;
+// };
+
+// const moveZeroes = (nums) => {
+//     let i = 0;
+//     for (let j = 0; j < nums.length; j++) {
+//         console.log(nums[i]);
+//         console.log(nums[j]);
+//         if (nums[j] !== 0) {
+//             let temp = nums[j];
+//             nums[j] = nums[i];
+//             nums[i] = temp;
+//             i++;
+//         }
+//     }
+//     return nums;
+// }
+
 const moveZeroes = (nums) => {
     let i = 0;
     for (let j = 0; j < nums.length; j++) {
-        console.log(nums[i]);
-        console.log(nums[j]);
-        if (nums[j] !== 0) {
+        if (nums[j]) {
             let temp = nums[j];
             nums[j] = nums[i];
             nums[i] = temp;
