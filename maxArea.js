@@ -44,16 +44,15 @@
 //     return max;
 // }
 
-// const maxArea = (height) => {
-//     let res = 0;
+// var maxArea = function (height) {
+//     let most = 0;
 //     for (let i = 0; i < height.length; i++) {
 //         for (let j = i + 1; j < height.length; j++) {
-//             let area = (j - i) * Math.min(height[i], height[j]);
-//             res = Math.max(res, area);
+//             most = Math.max(most, (j - i) * Math.min(height[i], height[j]));
 //         }
 //     }
-//     return res;
-// }
+//     return most;
+// };
 
 // const maxArea = (height) => {
 //     let res = 0;
@@ -70,6 +69,8 @@
 //     }
 //     return res;
 // }
+
+
 
 // We can see that the area of the container is limited by the smallest side, so we need to know what the smallest side is every iterations
 // The area of a container is (right - left) multiplied by the smallestSide.
@@ -96,9 +97,5 @@
 //     return res;
 // }
 
-console.log(powerOfThree(27));// true
-console.log(powerOfThree(0));// false
-console.log(powerOfThree(10));// false
-console.log(powerOfThree(9));// true
-// console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));// 49
-// console.log(maxArea([1, 1]));// 1
+console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));// 49
+console.log(maxArea([1, 1]));// 1
