@@ -21,13 +21,12 @@ var findMaxAverage = function (nums, k) {
     let max = 0;
     for (let i = 0; i < k; i++) {
         sum += nums[i];
-        max = sum;
     }
+    max = sum;
     let j = 0;
-    let n = k;
-    while (n < nums.length) {
+    for (let i = k; i < nums.length; i++) {
         sum -= nums[j++];
-        sum += nums[n++];
+        sum += nums[i];
         max = Math.max(sum, max);
     }
     return max / k;

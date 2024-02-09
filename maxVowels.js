@@ -22,27 +22,6 @@
 // s consists of lowercase English letters.
 // 1 <= k <= s.length
 
-// var maxVowels = function (s, k) {
-//     let array = ['a', 'e', 'i', 'o', 'u']
-//     let count = 0
-//     for (let i = 0; i < k; i++) {
-//         if (array.includes(s[i])) {
-//             count++
-//         }
-//     }
-//     let max = count
-//     for (let i = k; i < s.length; i++) {
-//         if (array.includes(s[i])) {
-//             count++
-//         }
-//         if (array.includes(s[i - k])) {
-//             count--
-//         }
-//         max = Math.max(max, count)
-//     }
-//     return max
-// };
-
 const maxVowels = (s, k) => {
     let vowels = ["a", "e", "i", "o", "u"];
     let count = 0;
@@ -53,8 +32,12 @@ const maxVowels = (s, k) => {
         }
     }
     max = count;
+    let j = 0;
     for (let i = k; i < s.length; i++) {
-        if (vowels.includes(s[i - k])) {
+        console.log(s[i - k]);
+        console.log(s[j]);
+        j++;
+        if (vowels.includes(s[j])) {
             count--;
         }
         if (vowels.includes(s[i])) {
@@ -66,6 +49,6 @@ const maxVowels = (s, k) => {
 }
 
 console.log(maxVowels("abciiidef", 3));// 3
-console.log(maxVowels("aeiou", 2));// 2
-console.log(maxVowels("leetcode", 3));// 2
-console.log(maxVowels("tryhard", 4));// 1
+// console.log(maxVowels("aeiou", 2));// 2
+// console.log(maxVowels("leetcode", 3));// 2
+// console.log(maxVowels("tryhard", 4));// 1
