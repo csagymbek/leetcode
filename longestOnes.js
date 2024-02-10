@@ -18,21 +18,80 @@
 // nums[i] is either 0 or 1.
 // 0 <= k <= nums.length
 
+// var longestOnes = function (nums, k) {
+//     let i = 0;
+//     let j = 0;
+//     while (j < nums.length) {
+//         if (nums[j++] === 0) {
+//             k--;
+//         }
+//         if (k < 0) {
+//             if (nums[i++] === 0) {
+//                 k++;
+//             }
+//         }
+//     }
+//     return j - i;
+// };
+
+// var longestOnes = function (nums, k) {
+//     let i = 0;
+//     let count = 0;
+//     let max = 0;
+//     for (let j = 0; j < nums.length; j++) {
+//         if (nums[j] === 0) {
+//             count++;
+//         }
+//         if (count > k) {
+//             if (nums[i] === 0) {
+//                 count--;
+//             }
+//             i++;
+//         }
+//         max = Math.max(max, j - i + 1);
+//     }
+//     return max;
+// }
+
+// var longestOnes = function (nums, k) {
+//     let i = 0;
+//     let j = 0;
+//     while (j < nums.length) {
+//         if (nums[j] === 0) {
+//             k--;
+//         }
+//         if (k < 0) {
+//             if (nums[i] === 0) {
+//                 k++;
+//             }
+//             i++;
+//         }
+//         j++;
+//     }
+//     return j - i;
+// }
+
 var longestOnes = function (nums, k) {
     let i = 0;
-    let j = 0;
-    while (j < nums.length) {
-        if (nums[j++] === 0) {
-            k--;
+    let count = 0;
+    let max = 0;
+    for (let j = 0; j < nums.length; j++) {
+        if (nums[j] === 0) {
+            count++;
         }
-        if (k < 0) {
-            if (nums[i++] === 0) {
-                k++;
+        if (count > k) {
+            if (nums[i] === 0) {
+                count--;
             }
+            i++;
         }
+        max = Math.max(max, j - i + 1);
     }
-    return j - i;
+    return max;
 };
+// k = 0
+//                 i                 j
+// [1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0]
 
 console.log(longestOnes([1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0], 2));// 6
-// console.log(longestOnes([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3));// 10
+console.log(longestOnes([0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1], 3));// 10

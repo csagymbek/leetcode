@@ -23,19 +23,21 @@
 
 var longestSubarray = function (nums) {
     let i = 0;
-    let j = 0;
+    let max = 0;
     let k = 1;
-    while (i < nums.length) {
-        if (nums[i++] === 0) {
+    for (let j = 0; j < nums.length; j++) {
+        if (nums[j] === 0) {
             k--;
         }
         if (k < 0) {
-            if (nums[j++] === 0) {
+            if (nums[i] === 0) {
                 k++;
             }
+            i++;
         }
+        max = Math.max(max, j - i);
     }
-    return i - j;
+    return max;
 };
 
 console.log(longestSubarray([1, 1, 0, 1]));// 3
