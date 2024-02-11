@@ -17,23 +17,41 @@
 // 1 <= s.length <= 1000
 // s consists of lowercase English letters.
 
+// const countSubstrings = (s) => {
+//     let count = 0;
+//     for (let i = 0; i < s.length; i++) {
+//         let j = i;
+//         let k = i;
+//         while (j >= 0 && k < s.length && s.charAt(j) === s.charAt(k)) {
+//             count++;
+//             j--;
+//             k++;
+//         }
+//         j = i;
+//         k = i + 1;
+//         while (j >= 0 && k < s.length && s.charAt(j) === s.charAt(k)) {
+//             count++;
+//             j--;
+//             k++;
+//         }
+//     }
+//     return count;
+// }
+
 const countSubstrings = (s) => {
     let count = 0;
+    const isPalindromic = (i, j) => {
+        while (i < s.length && j >= 0 && s.charAt(i) === s.charAt(j)) {
+            count++;
+            i++;
+            j--;
+        }
+    }
     for (let i = 0; i < s.length; i++) {
         let j = i;
         let k = i;
-        while (j >= 0 && k < s.length && s.charAt(j) === s.charAt(k)) {
-            count++;
-            j--;
-            k++;
-        }
-        j = i;
-        k = i + 1;
-        while (j >= 0 && k < s.length && s.charAt(j) === s.charAt(k)) {
-            count++;
-            j--;
-            k++;
-        }
+        isPalindromic(k, j);
+        isPalindromic(k + 1, j);
     }
     return count;
 }
