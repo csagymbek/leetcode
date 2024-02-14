@@ -21,27 +21,19 @@
 // 1 <= nums.length <= 105
 // 1 <= nums[i] <= 104
 
-var minSubArrayLen = function (target, nums) {
-    nums = nums.sort((a, b) => a - b);
-    let ar = [];
+const minSubArrayLen = (target, nums) => {
+    let min = Infinity;
+    let sum = 0;
     let i = 0;
-    let j = nums.length - 1;
-    while (i < j) {
-        if (nums[i] === target || nums[j] === target) {
-            return 1;
-        } else if (nums[i] + nums[j] === target) {
-            ar.push(nums[i]);
-            ar.push(nums[j]);
-            return ar.length;
-        } else if (nums[i] + nums[j] < target) {
-            i++;
-        } else {
-            j++;
+    for (let j = 0; j < nums.length; j++) {
+        sum += nums[j];
+        while (sum >= target) {
+            min = Math.min(min, j - i + 1);
+            sum -= nums[i++];
         }
     }
-    console.log(ar);
-    return ar.length;
-};
+    return min === Infinity ? 0 : min;
+}
 
 console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3]));// 2
 console.log(minSubArrayLen(4, [1, 4, 4]));// 1
