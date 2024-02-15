@@ -29,19 +29,36 @@
 //     return gcdOfStrings(long.substring(short.length), short);
 // }
 
-const gcdOfStrings = (str1, str2) => {
-    let long = str1.length > str2.length ? str1 : str2;
-    let short = str1.length > str2.length ? str2 : str1;
-    if (str1.length === str2.length && str1 === str2) {
-        return str1;
-    }
-    if (long.startsWith(short)) {
-        return gcdOfStrings(long.substring(short.length), short);
-    } else {
+// const gcdOfStrings = (str1, str2) => {
+//     let long = str1.length > str2.length ? str1 : str2;
+//     let short = str1.length > str2.length ? str2 : str1;
+//     if (str1.length === str2.length && str1 === str2) {
+//         return str1;
+//     }
+//     if (long.startsWith(short)) {
+//         return gcdOfStrings(long.substring(short.length), short);
+//     } else {
+//         return "";
+//     }
+// }
+
+var gcdOfStrings = function (str1, str2) {
+    if (str1 + str2 !== str2 + str1) {
         return "";
     }
-}
+    let min = Math.min(str1.length, str2.length);
+    console.log(min);
+    for (let i = min; i >= 0; i--) {
+        console.log(i);
+        console.log(str1.length % i);
+        console.log(str2.length % i);
+        console.log(str1.substring(0, i))
+        if (str1.length % i === 0 && str2.length % i === 0) {
+            return str1.substring(0, i);
+        }
+    }
+};
 
-console.log(gcdOfStrings("ABCABC", "ABC")); // "ABC"
+// console.log(gcdOfStrings("ABCABC", "ABC")); // "ABC"
 console.log(gcdOfStrings("ABABAB", "ABAB")); // "AB"
-console.log(gcdOfStrings("LEET", "CODE")); // ""
+// console.log(gcdOfStrings("LEET", "CODE")); // ""

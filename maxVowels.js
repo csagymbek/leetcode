@@ -22,78 +22,79 @@
 // s consists of lowercase English letters.
 // 1 <= k <= s.length
 
-// const maxVowels = (s, k) => {
-//     let vowels = ["a", "e", "i", "o", "u"];
-//     let count = 0;
-//     let max = 0;
-//     for (let i = 0; i < k; i++) {
-//         if (vowels.includes(s[i])) {
-//             count++;
-//         }
-//     }
-//     max = count;
-//     let j = 0;
-//     for (let i = k; i < s.length; i++) {
-//         console.log(s[i - k]);
-//         console.log(s[j]);
-//         j++;
-//         if (vowels.includes(s[j])) {
-//             count--;
-//         }
-//         if (vowels.includes(s[i])) {
-//             count++;
-//         }
-//         max = Math.max(max, count);
-//     }
-//     return max;
-// }
-
-// const maxVowels = (s, k) => {
-//     let vowels = "aeiou";
-//     let max = 0;
-//     let count = 0;
-//     let j = 0;
-//     for (let i = 0; i < k; i++) {
-//         if (vowels.includes(s[i])) {
-//             count++;
-//         }
-//     }
-//     max = count;
-//     for (let i = k; i < s.length; i++) {
-//         if (vowels.includes(s[i])) {
-//             count++;
-//         }
-//         if (vowels.includes(s[j])) {
-//             count--;
-//         }
-//         j++;
-//         max = Math.max(max, count);
-//     }
-//     return max;
-// }
-
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
 var maxVowels = function (s, k) {
-    let vowels = "aeiou";
+    let vowels = new Set(["a", "e", "i", "o", "u"]);
     let max = 0;
     let count = 0;
-    let j = 0;
-    for (let i = 0; i < s.length; i++) {
-        if (vowels.indexOf(s[i]) > -1) {
+    for (let i = 0; i < k; i++) {
+        if (vowels.has(s.charAt(i))) {
             count++;
         }
-        if ((i - j + 1) > k) {
-            console.log((i - j) + 1);
-            if (vowels.indexOf(s[j]) > -1) {
-                count--;
-            }
-            j++;
+    }
+    max = count;
+    for (let i = k; i < s.length; i++) {
+        if (vowels.has(s.charAt(i - k))) {
+            count--;
+        }
+        if (vowels.has(s.charAt(i))) {
+            count++;
         }
         max = Math.max(max, count);
     }
     return max;
 };
 
+var maxVowels = function (s, k) {
+    let vowels = new Set(["a", "e", "i", "o", "u"]);
+    let max = 0;
+    let count = 0;
+    let i = 0;
+    for (let j = 0; j < s.length; j++) {
+        if (vowels.has(s.charAt(j))) {
+            count++;
+        }
+        if (j - i + 1 > k) {
+            if (vowels.has(s.charAt(i))) {
+                count--;
+            }
+            i++;
+        }
+        max = Math.max(max, count);
+    }
+    return max;
+};
+
+// var maxVowels = function (s, k) {
+//     let vowels = new Set(["a", "e", "i", "o", "u"]);
+//     let max = 0;
+//     let count = 0;
+//     for (let i = 0; i < k; i++) {
+//         if (vowels.has(s.charAt(i))) {
+//             count++;
+//         }
+//     }
+//     max = count;
+//     for (let i = k; i < s.length; i++) {
+//         if (vowels.has(s.charAt(i - k))) {
+//             count--;
+//         }
+//         if (vowels.has(s.charAt(i))) {
+//             count++;
+//         }
+//         max = Math.max(max, count);
+//     }
+//     return max;
+// };
+
 console.log(maxVowels("abciiidef", 3));// 3
-// console.log(maxVowels("aeiou", 2));// 2
-// console.log(maxVowels("leetcode", 3));// 2
-// console.log(maxVowels("tryhard", 4));// 1
+console.log(maxVowels("aeiou", 2));// 2
+console.log(maxVowels("leetcode", 3));// 2
+console.log(maxVowels("tryhard", 4));// 1
+
+// https://www.youtube.com/watch?v=kEfPSzgL-Ss
+// https://www.youtube.com/watch?v=FEXJGn19u7Y

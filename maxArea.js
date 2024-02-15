@@ -78,24 +78,24 @@
 // When moving the left or right pointer, we want to get rid of the smaller side, so iterate from that side
 // With this we can do the problem in O(n) time and constant space by having a left and right pointer, and moving these pointers inward.
 
-// const maxArea = (height) => {
-//     let res = 0;
-//     let i = 0;
-//     let j = height.length - 1;
-//     while (i < j) {
-//         let min = Math.min(height[i], height[j]);
-//         let area = (j - i) * min;
-//         if (area > res) {
-//             res = area;
-//         }
-//         if (height[i] < height[j]) {
-//             i++;
-//         } else {
-//             j--;
-//         }
-//     }
-//     return res;
-// }
+const maxArea = (height) => {
+    let res = 0;
+    let i = 0;
+    let j = height.length - 1;
+    while (i < j) {
+        let min = Math.min(height[i], height[j]);
+        let area = (j - i) * min;
+        if (area > res) {
+            res = area;
+        }
+        if (height[i] < height[j]) {
+            i++;
+        } else {
+            j--;
+        }
+    }
+    return res;
+}
 
 console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));// 49
 console.log(maxArea([1, 1]));// 1
