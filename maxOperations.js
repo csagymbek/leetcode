@@ -18,40 +18,24 @@
 // - Remove the first two 3's, then nums = [1,4,3]
 // There are no more pairs that sum up to 6, hence a total of 1 operation.
 
-// const maxOperations = (nums, k) => {
-//     let count = 0;
-//     let i = 0;
-//     let j = nums.length - 1;
-//     while (i < j) {
-//         if (nums[i] + nums[j] === k) {
-//             count++;
-//         }
-//         i++;
-//         j--;
-//     }
-//     return count;
-// }
-
-const maxOperations = (nums, k) => {
-    nums.sort((a, b) => a - b);
-    console.log(nums);
+var maxOperations = function (nums, k) {
+    nums = nums.sort((a, b) => a - b);
     let count = 0;
     let i = 0;
     let j = nums.length - 1;
     while (i < j) {
-        let sum = nums[i] + nums[j];
-        if (sum < k) {
-            i++;
-        } else if (sum > k) {
-            j--;
-        } else {
+        if (nums[i] + nums[j] === k) {
             count++;
             i++;
+            j--;
+        } else if (nums[i] + nums[j] < k) {
+            i++;
+        } else {
             j--;
         }
     }
     return count;
-}
+};
 
 console.log(maxOperations([1, 2, 3, 4], 5));// 2
 console.log(maxOperations([3, 1, 3, 4, 3], 6));// 1

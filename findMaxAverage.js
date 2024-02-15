@@ -17,19 +17,33 @@
 // -104 <= nums[i] <= 104
 
 var findMaxAverage = function (nums, k) {
-    let sum = 0;
     let max = 0;
+    let sum = 0;
     for (let i = 0; i < k; i++) {
         sum += nums[i];
     }
     max = sum;
-    let j = 0;
-    for (let i = k; i < nums.length; i++) {
-        sum -= nums[j++];
-        sum += nums[i];
-        max = Math.max(sum, max);
+    let i = 0;
+    for (let j = k; j < nums.length; j++) {
+        sum -= nums[i++];
+        sum += nums[j];
+        max = Math.max(max, sum);
     }
     return max / k;
+}
+
+var findMaxAverage = function (nums, k) {
+    let sum = 0;
+    let max = -Infinity;
+    let i = 0;
+    for (let j = 0; j < nums.length; j++) {
+        sum += nums[j];
+        if (j - i + 1 === k) {
+            max = Math.max(max, sum / k);
+            sum -= nums[i++];
+        }
+    }
+    return max;
 };
 
 console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4));//  12.75000
