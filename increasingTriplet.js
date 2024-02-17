@@ -85,27 +85,42 @@
 //     return false;
 // }
 
-const increasingTriplet = (nums) => {
-    if (nums.length < 3) {
-        return false;
-    }
-    let maxNumOne = Number.MAX_SAFE_INTEGER;
-    let maxNumTwo = Number.MAX_SAFE_INTEGER;
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] < maxNumOne) {
-            maxNumOne = nums[i];
-        }
-        if (nums[i] > maxNumOne) {
-            maxNumTwo = Math.min(nums[i], maxNumTwo);
-        }
-        if (nums[i] > maxNumTwo) {
+// const increasingTriplet = (nums) => {
+//     if (nums.length < 3) {
+//         return false;
+//     }
+//     let maxNumOne = Number.MAX_SAFE_INTEGER;
+//     let maxNumTwo = Number.MAX_SAFE_INTEGER;
+//     for (let i = 0; i < nums.length; i++) {
+//         if (nums[i] < maxNumOne) {
+//             maxNumOne = nums[i];
+//         }
+//         if (nums[i] > maxNumOne) {
+//             maxNumTwo = Math.min(nums[i], maxNumTwo);
+//         }
+//         if (nums[i] > maxNumTwo) {
+//             return true;
+//         }
+//     }
+
+//     return false;
+// }
+
+var increasingTriplet = function (nums) {
+    let i = Infinity;
+    let j = Infinity;
+    for (let k of nums) {
+        if (k <= i) {
+            i = k
+        } else if (k <= j) {
+            j = k;
+        } else {
             return true;
         }
     }
-
     return false;
-}
+};
 
 console.log(increasingTriplet([1, 2, 3, 4, 5]));// true
-// console.log(increasingTriplet([5, 4, 3, 2, 1]));// false
-// console.log(increasingTriplet([2, 1, 5, 0, 4, 6]));// true 
+console.log(increasingTriplet([5, 4, 3, 2, 1]));// false
+console.log(increasingTriplet([2, 1, 5, 0, 4, 6]));// true 

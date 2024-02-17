@@ -60,7 +60,7 @@
 const moveZeroes = (nums) => {
     let i = 0;
     for (let j = 0; j < nums.length; j++) {
-        if (nums[j]) {
+        if (nums[j] !== 0) {
             let temp = nums[j];
             nums[j] = nums[i];
             nums[i] = temp;

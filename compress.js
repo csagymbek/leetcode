@@ -22,84 +22,31 @@
 // 1 <= chars.length <= 2000
 // chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol.
 
-// const compress = (chars) => {
-//     let index = 0;
-//     let i = 0;
-//     while (i < chars.length) {
-//         let j = i;
-//         while (j < chars.length && chars[i] === chars[j]) {
-//             j++;
-//         }
-//         chars[index++] = chars[i];
-//         if (j - i > 1) {
-//             let count = j - i + "";
-//             for (let char of count.split("")) {
-//                 chars[index++] = char;
-//             }
-//         }
-//         i = j;
-//     }
-//     return index;
-// }
-
-// const compress = (chars) => {
-//     let i = 0;
-//     let j = 0;
-//     while (i < chars.length) {
-//         let char = chars[i];
-//         let count = 0;
-//         chars[j++] = char;
-//         while (i < chars.length && char === chars[i]) {
-//             count++;
-//             i++;
-//         }
-//         if (count > 1) {
-//             count = (count + "").split("");
-//             for (let n of count) {
-//                 chars[j++] = n;
-//             }
-//         }
-//     }
-//     return j;
-// }
-
-// const compress = (chars) => {
-//     let res = "";
-//     let count = 1;
-//     for (let i = 0; i < chars.length; i++) {
-//         if (chars[i] === chars[i + 1]) {
-//             count++;
-//         } else {
-//             res += chars[i] + count;
-//             console.log(res);
-//             count = 1;
-//         }
-//     }
-//     return res;
-// }
-
-const compress = (chars) => {
-    let index = 0;
-    let i = 0;
-    while (i < chars.length) {
-        let j = i;
-        while (j < chars.length && chars[j] === chars[i]) {
-            j++;
-        }
-        chars[index] = chars[i];
-        index++;
-        if (j - i > 1) {
-            let count = j - i + "";
-            for (let n of count) {
-                chars[index] = n;
-                index++;
+var compress = function (chars) {
+    let count = 1; // count of consecutive characters
+    let i = 0; // pointer to write compressed characters
+    for (let j = 0; j < chars.length; j++) {
+        // Check if the current character is the same as the next one
+        if (chars[j] === chars[j + 1]) {
+            count++; // Increment count for consecutive characters
+        } else {
+            // Write the character
+            chars[i++] = chars[j];
+            // Write the count if it's greater than 1
+            if (count > 1) {
+                // Convert count to a string and split it if it's 10 or longer
+                for (const n of count.toString()) {
+                    chars[i++] = n;
+                }
             }
+            count = 1; // Reset count for the next character
         }
-        i = j;
     }
-    return index;
-}
-// 2
+    return i; // Return the new length of the array
+};
+
 console.log(compress(["a", "a", "b", "b", "c", "c", "c"]));// ["a","2","b","2","c","3"] 6
-// console.log(compress(["a"]));// ["a"] 1
-// console.log(compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]));// ["a","b","1","2"] 4
+console.log(compress(["a"]));// ["a"] 1
+console.log(compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]));// ["a","b","1","2"] 4
+
+// https://www.youtube.com/watch?v=ISIG3o-Xofg&t=14s

@@ -70,8 +70,6 @@
 //     return res;
 // }
 
-
-
 // We can see that the area of the container is limited by the smallest side, so we need to know what the smallest side is every iterations
 // The area of a container is (right - left) multiplied by the smallestSide.
 // If the area is greater than our result, we have a new result
@@ -99,3 +97,5 @@ const maxArea = (height) => {
 
 console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));// 49
 console.log(maxArea([1, 1]));// 1
+
+// https://www.youtube.com/watch?v=UuiTKBwPgAo&t=143s

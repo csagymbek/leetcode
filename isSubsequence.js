@@ -63,7 +63,17 @@
 //     return counter === s.length;
 // }
 
-console.log(Number.MIN_SAFE_INTEGER);
+var isSubsequence = function (s, t) {
+    let i = 0;
+    let j = 0;
+    while (i < s.length && j < t.length) {
+        if (s.charAt(i) === t.charAt(j)) {
+            i++;
+        }
+        j++;
+    }
+    return i === s.length;
+};
 
 console.log(isSubsequence("abc", "ahbgdc"));// true
 console.log(isSubsequence("axc", "ahbgdc"));// false
@@ -72,3 +82,5 @@ console.log(isSubsequence("aec", "abcde"));// false
 console.log(isSubsequence("b", "c"));// false
 console.log(isSubsequence("", "ahbgdc"));// true
 console.log(isSubsequence("", ""));// true
+
+// https://www.youtube.com/watch?v=99RVfqklbCE
