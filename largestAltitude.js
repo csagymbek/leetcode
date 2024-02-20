@@ -1,4 +1,5 @@
 // 1732. Find the Highest Altitude
+
 // There is a biker going on a road trip. The road trip consists of n + 1 points at different altitudes. The biker starts his trip on point 0 with altitude equal 0.
 // You are given an integer array gain of length n where gain[i] is the net gain in altitude between points i​​​​​​ and i + 1 for all (0 <= i < n). Return the highest altitude of a point.
 
@@ -17,14 +18,10 @@
 // 1 <= n <= 100
 // -100 <= gain[i] <= 100
 
-Imagine there's a biker who is going on a road trip. The biker starts at a point on the road where the altitude (height) is zero. During the road trip, the biker will pass through several points on the road, each at a different altitude.
-
+// Imagine there's a biker who is going on a road trip. The biker starts at a point on the road where the altitude (height) is zero. During the road trip, the biker will pass through several points on the road, each at a different altitude.
 // To make it easier to understand, let's call the starting point "Point 0," and there are a total of "n + 1" points on the road trip. So, there are n segments or sections between these points. The net gain in altitude between consecutive points is given in an integer array called "gain." The value of gain[i] represents the difference in altitude between points i and i+1.
-
 // For example, if gain[i] is positive, it means the biker is going uphill, gaining altitude from point i to point i+1. If gain[i] is negative, it means the biker is going downhill, losing altitude from point i to point i+1.
-
 // The task is to find out what is the highest altitude the biker reaches during the road trip. In other words, we need to determine the maximum height the biker reaches from all the points on the trip.
-
 // To solve this, we can start at point 0, which has an altitude of 0, and then follow the net gain in altitude given in the "gain" array for each segment. By adding the net gains consecutively, we can keep track of the biker's altitude as they move along the road. The highest altitude reached during the journey will be the answer to the problem.
 
 // And here the explanation of first testcase
