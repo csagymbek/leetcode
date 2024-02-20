@@ -14,48 +14,22 @@
 // 1 <= s.length <= 3 * 105
 // s consist of printable ASCII characters.
 
-// const reverseVowels = (str) => {
-//     let vowels = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"];
-//     let i = 0;
-//     let j = str.length - 1;
-//     let charAr = str.split("");
-//     console.log(str);
-//     console.log(charAr);
-//     while (i < j) {
-//         console.log(charAr[i]);
-//         while (i < j && !vowels.includes(charAr[i])) {
-//             i++;
-//         }
-//         while (j > i && !vowels.includes(charAr[j])) {
-//             j--;
-//         }
-//         let temp = charAr[i];
-//         charAr[i++] = charAr[j];
-//         charAr[j--] = temp;
-//     }
-
-//     console.log(charAr);
-//     return charAr.join("");
-// }
-
-const reverseVowels = (str) => {
-    let vowels = "aeiouAEIOU";
-    let strCopyAr = str.split("");
+var reverseVowels = function (s) {
+    let vowels = new Set(["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]);
+    s = s.split("");
     let i = 0;
-    let j = str.length - 1;
+    let j = s.length - 1;
     while (i < j) {
-        while (i < j && !vowels.includes(strCopyAr[i])) {
+        while (i < j && !vowels.has(s[i])) {
             i++;
         }
-        while (i < j && !vowels.includes(strCopyAr[j])) {
+        while (i < j && !vowels.has(s[j])) {
             j--;
         }
-        let temp = strCopyAr[i];
-        strCopyAr[i++] = strCopyAr[j];
-        strCopyAr[j--] = temp;
+        [s[i++], [s[j--]]] = [s[j], s[i]];
     }
-    return strCopyAr.join("");
-}
+    return s.join("");
+};
 
 console.log(reverseVowels("hello"));// holle
 console.log(reverseVowels("leetcode"));// leotcede

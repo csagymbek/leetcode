@@ -23,13 +23,11 @@
 // Input: candies = [12, 1, 12], extraCandies = 10
 // Output: [true, false, true]
 
-
 // Constraints:
 // n == candies.length
 // 2 <= n <= 100
 // 1 <= candies[i] <= 100
 // 1 <= extraCandies <= 50
-
 
 // const kidsWithCandies = (candies, extraCandies) => {
 //     let maxCandiesInArray = [...candies].sort().pop();
@@ -51,7 +49,19 @@
 //     return candies.map(candy => candy + extraCandies >= max);
 // };
 
-const kidsWithCandies = (candies, extraCandies) => candies.map(candy => candy + extraCandies >= Math.max(...candies));
+// const kidsWithCandies = (candies, extraCandies) => candies.map(candy => candy + extraCandies >= Math.max(...candies));
+
+var kidsWithCandies = function (candies, extraCandies) {
+    let max = Math.max(...candies);
+    for (let i = 0; i < candies.length; i++) {
+        if (candies[i] + extraCandies >= max) {
+            candies[i] = true;
+        } else {
+            candies[i] = false;
+        }
+    }
+    return candies;
+};
 
 console.log(kidsWithCandies([2, 3, 5, 1, 3], 3)); //[true, true, true, false, true]
 console.log(kidsWithCandies([4, 2, 1, 1, 2], 1)); //[true, false, false, false, false]

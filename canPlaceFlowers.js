@@ -16,10 +16,13 @@
 // There are no two adjacent flowers in flowerbed.
 // 0 <= n <= flowerbed.length
 
-const canPlaceFlowers = (flowerbed, n) => {
+// works in an interview 
+var canPlaceFlowers = function (flowerbed, n) {
+    flowerbed.unshift(0);
+    flowerbed.push(0);
+    console.log(flowerbed);
     for (let i = 0; i < flowerbed.length; i++) {
-        if (flowerbed[i] === 0 && (i === 0 || flowerbed[i - 1] === 0) && (i === flowerbed.length - 1 || flowerbed[i + 1] === 0)) {
-            flowerbed[i] = 1;
+        if (flowerbed[i - 1] === 0 && flowerbed[i] === 0 && flowerbed[i + 1] === 0) {
             n--;
             i++;
         }
@@ -27,12 +30,38 @@ const canPlaceFlowers = (flowerbed, n) => {
     return n <= 0;
 };
 
-console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));// true
-console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2));// false
-console.log(canPlaceFlowers([0, 0, 1], 1));// true
-console.log(canPlaceFlowers([1, 0, 1], 1));// false
-console.log(canPlaceFlowers([1, 0, 0, 0, 0, 1], 2));// false
-console.log(canPlaceFlowers([1, 0, 1, 0, 1, 0, 1], 0));// true
-console.log(canPlaceFlowers([1, 0, 0, 0, 1, 0, 1], 1));// true
-console.log(canPlaceFlowers([1, 0, 1, 0, 1, 0, 1], 1));// false
-console.log(canPlaceFlowers([1, 0, 0, 0, 1, 0, 0], 2));// true
+// const canPlaceFlowers = (flowerbed, n) => {
+//     for (let i = 0; i < flowerbed.length; i++) {
+//         if (flowerbed[i] === 0 && (i === 0 || flowerbed[i - 1] === 0) && (i === flowerbed.length - 1 || flowerbed[i + 1] === 0)) {
+//             flowerbed[i] = 1;
+//             n--;
+//             i++;
+//         }
+//     }
+//     return n <= 0;
+// };
+
+// var canPlaceFlowers = function (flowerbed, n) {
+//     flowerbed.unshift(0);
+//     flowerbed.push(0);
+//     for (let i = 0; i < flowerbed.length; i++) {
+//         if (flowerbed[i - 1] === 0 && flowerbed[i] === 0 && flowerbed[i + 1] === 0) {
+//             n--;
+//             flowerbed[i] = 1;
+//         }
+//     }
+//     return n <= 0;
+// };
+
+// console.log(canPlaceFlowers([1, 0, 0, 0, 1], 1));// true
+// console.log(canPlaceFlowers([1, 0, 0, 0, 1], 2));// false
+// console.log(canPlaceFlowers([0, 0, 1], 1));// true
+// console.log(canPlaceFlowers([1, 0, 1], 1));// false
+// console.log(canPlaceFlowers([1, 0, 0, 0, 0, 1], 2));// false
+// console.log(canPlaceFlowers([1, 0, 1, 0, 1, 0, 1], 0));// true
+// console.log(canPlaceFlowers([1, 0, 0, 0, 1, 0, 1], 1));// true
+// console.log(canPlaceFlowers([1, 0, 1, 0, 1, 0, 1], 1));// false
+// console.log(canPlaceFlowers([1, 0, 0, 0, 1, 0, 0], 2));// true
+console.log(canPlaceFlowers([0, 0, 1, 0, 0], 1));// true
+
+// https://www.youtube.com/shorts/_bvVoLJut04

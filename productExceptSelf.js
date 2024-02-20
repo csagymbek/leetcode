@@ -17,17 +17,60 @@
 // -30 <= nums[i] <= 30
 // The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 
+// var productExceptSelf = function (nums) {
+//     let res = [];
+//     for (let i = 0; i < nums.length; i++) {
+//         let prefix = 1;
+//         for (let j = 0; j < nums.length; j++) {
+//             if (i === j) {
+//                 continue;
+//             }
+//             prefix *= nums[j];
+//         }
+//         res[i] = prefix;
+//     }
+//     return res;
+// };
+
+// var productExceptSelf = function (nums) {
+//     let res = [];
+//     let sum = nums.reduce((acc, val) => acc * val);
+//     console.log(sum)
+//     for (let i = 0; i < nums.length; i++) {
+//         res.push(sum / nums[i]);
+//     }
+//     return res;
+// };
+
+// var productExceptSelf = function (nums) {
+//     let left = [];
+//     left[0] = 1;
+//     let right = [];
+//     right[nums.length - 1] = 1;
+//     let res = [];
+//     for (let i = 1; i < nums.length; i++) {
+//         left[i] = left[i - 1] * nums[i - 1];
+//     }
+//     for (let i = nums.length - 2; i >= 0; i--) {
+//         right[i] = right[i + 1] * nums[i + 1];
+//     }
+//     for (let i = 0; i < nums.length; i++) {
+//         res[i] = left[i] * right[i];
+//     }
+//     return res;
+// };
+
 var productExceptSelf = function (nums) {
-    let res = [];
-    let prefix = 1;
-    let postfix = 1;
+    let res = new Array(nums.length).fill(1);
+    let cur = 1;
     for (let i = 0; i < nums.length; i++) {
-        res[i] = prefix;
-        prefix *= nums[i];
+        res[i] *= cur;
+        cur *= nums[i];
     }
+    cur = 1;
     for (let i = nums.length - 1; i >= 0; i--) {
-        res[i] *= postfix;
-        postfix *= nums[i];
+        res[i] *= cur;
+        cur *= nums[i];
     }
     return res;
 };
