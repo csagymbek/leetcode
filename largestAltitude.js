@@ -53,3 +53,5 @@ var largestAltitude = function (gain) {
 
 console.log(largestAltitude([-5, 1, 5, 0, -7]));// 1
 console.log(largestAltitude([-4, -3, -2, -1, 4, 3, 2]));// 0
+
+// https://www.youtube.com/watch?v=SGNCPI84IOM
