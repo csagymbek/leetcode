@@ -36,3 +36,5 @@ var findDifference = function (nums1, nums2) {
 
 console.log(findDifference([1, 2, 3], [2, 4, 6]));// [[1,3],[4,6]]
 console.log(findDifference([1, 2, 3, 3], [1, 1, 2, 2]));// [[3],[]]
+
+// https://www.youtube.com/watch?v=a4wqKR-znBE&t=10s
