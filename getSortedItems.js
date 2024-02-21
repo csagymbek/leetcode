@@ -31,56 +31,33 @@
 // 1 <= word1.length, word2.length <= 105
 // word1 and word2 contain only lowercase English letters.
 
-// var getSortedItems = function (word) {
-//     let hashmap = {};
-//     for (let ch of word) {
-//         hashmap[ch] = (hashmap[ch] || 0) + 1;
-//     }
-//     return {
-//         keys: Object.keys(hashmap).sort(),
-//         counts: Object.values(hashmap).sort((a, b) => a - b)
-//     };
-// };
-
-// var closeStrings = function (word1, word2) {
-//     if (word1.length !== word2.length) {
-//         return false;
-//     }
-//     let group1 = getSortedItems(word1);
-//     let group2 = getSortedItems(word2);
-//     for (let i = 0; i < group1.keys.length; i++) {
-//         if (group1.keys[i] !== group2.keys[i] || group1.counts[i] !== group2.counts[i]) {
-//             return false;
-//         }
-//     }
-//     return true;
-// };
-
-/*
- * @param {string} word1
- * @param {string} word2
- * @return {boolean}
- */
-var isPresent = function (word1, word2) {
-    for (let key of word1) {
-        if (!word2.has(key)) {
+var closeStrings = function (word1, word2) {
+    if (word1.length !== word2.length) {
+        return false;
+    }
+    var mapper = function (word) {
+        let map = {};
+        for (let char of word) {
+            map[char] = (map[char] || 0) + 1;
+        }
+        return {
+            keys: Object.keys(map).sort(),
+            values: Object.values(map).sort((a, b) => a - b)
+        };
+    }
+    let word1Map = mapper(word1);
+    let word2Map = mapper(word2);
+    for (let i = 0; i < word1Map.keys.length; i++) {
+        if (word1Map.keys[i] !== word2Map.keys[i] || word1Map.values[i] !== word2Map.values[i]) {
             return false;
         }
     }
     return true;
 };
 
-var closeStrings = function (word1, word2) {
-    if (word1.length !== word2.length) {
-        return false;
-    }
-    let word1Set = new Set(word1);
-    let word2Set = new Set(word2);
-    console.log(word1Set)
-    console.log(word2Set)
-    return word1Set.size === word2Set.size && isPresent(word1Set, word2Set);
-};
-
 console.log(closeStrings("abc", "bca"));// true
 console.log(closeStrings("a", "aa"));// false
 console.log(closeStrings("cabbba", "abbccc"));// true
+console.log(closeStrings("abbzzca", "babzzcz"));// false
+
+// https://blog.petefowler.dev/how-to-solve-the-leetcode-1657-determine-if-two-strings-are-close-problem-in-javascript
