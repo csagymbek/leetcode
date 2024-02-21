@@ -19,12 +19,25 @@
 // -1000 <= arr[i] <= 1000
 
 var uniqueOccurrences = function (arr) {
-    let obj = {};
-    let set = new Set(arr);
-    for (let i = 0; i < arr.length; i++) {
-        obj[arr[i]] = (obj[arr[i]] || 0) + 1;
+    let hash = {};
+    for (let n of arr) {
+        hash[n] = (hash[n] || 0) + 1;
     }
-    return set.size === Object.values(obj).length;
+    let hashValues = Object.values(hash).sort((a, b) => a - b);
+    for (let i = 0; i < hashValues.length; i++) {
+        if (hashValues[i] === hashValues[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+};
+
+var uniqueOccurrences = function (arr) {
+    let hashMap = {};
+    for (let num of arr) {
+        hashMap[num] = (hashMap[num] || 0) + 1;
+    }
+    return Object.values(hashMap).length === [...new Set(Object.values(hashMap))].length;
 };
 
 console.log(uniqueOccurrences([1, 2, 2, 1, 1, 3]));// true
