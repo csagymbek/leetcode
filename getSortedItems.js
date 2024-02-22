@@ -47,7 +47,13 @@ var closeStrings = function (word1, word2) {
     }
     let word1Map = mapper(word1);
     let word2Map = mapper(word2);
+    console.log(word1Map);
+    console.log(word2Map);
     for (let i = 0; i < word1Map.keys.length; i++) {
+        console.log(word1Map.keys[i]);
+        console.log(word2Map.keys[i]);
+        console.log(word1Map.values[i]);
+        console.log(word2Map.values[i]);
         if (word1Map.keys[i] !== word2Map.keys[i] || word1Map.values[i] !== word2Map.values[i]) {
             return false;
         }
@@ -55,9 +61,9 @@ var closeStrings = function (word1, word2) {
     return true;
 };
 
-console.log(closeStrings("abc", "bca"));// true
-console.log(closeStrings("a", "aa"));// false
-console.log(closeStrings("cabbba", "abbccc"));// true
+// console.log(closeStrings("abc", "bca"));// true
+// console.log(closeStrings("a", "aa"));// false
+// console.log(closeStrings("cabbba", "abbccc"));// true
 console.log(closeStrings("abbzzca", "babzzcz"));// false
 
 // https://blog.petefowler.dev/how-to-solve-the-leetcode-1657-determine-if-two-strings-are-close-problem-in-javascript
