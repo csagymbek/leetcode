@@ -38,6 +38,24 @@ var isAnagram = function (s, t) {
     return true;
 };
 
+var isAnagram = function (s, t) {
+    if (s.length !== t.length) {
+        return false;
+    }
+    let mapS = {};
+    let mapT = {};
+    for (let i = 0; i < s.length; i++) {
+        mapS[s.charAt(i)] = (mapS[s.charAt(i)] || 0) + 1;
+        mapT[t.charAt(i)] = (mapT[t.charAt(i)] || 0) + 1;
+    }
+    for (let key in mapS) {
+        if (mapS[key] !== mapT[key]) {
+            return false;
+        }
+    }
+    return true;
+};
+
 // console.log(isAnagram("rat", "car"));// false
 // console.log(isAnagram("anagram", "nagaram"));// true
 console.log(isAnagram("aacc", "ccac"));// false
