@@ -16,44 +16,52 @@
 
 // Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
 
-var isAnagram = function (s, t) {
-    if (s.length !== t.length) {
-        return false;
-    }
-    let mapS = {};
-    let mapT = {};
-    for (let char of s) {
-        mapS[char] = (mapS[char] || 0) + 1;
-    }
-    console.log(mapS);
-    for (let char of t) {
-        mapT[char] = (mapT[char] || 0) + 1;
-    }
-    console.log(mapT);
-    for (let key in mapS) {
-        if (mapS[key] !== mapT[key]) {
-            return false;
-        }
-    }
-    return true;
-};
+// var isAnagram = function (s, t) {
+//     if (s.length !== t.length) {
+//         return false;
+//     }
+//     let mapS = {};
+//     let mapT = {};
+//     for (let char of s) {
+//         mapS[char] = (mapS[char] || 0) + 1;
+//     }
+//     console.log(mapS);
+//     for (let char of t) {
+//         mapT[char] = (mapT[char] || 0) + 1;
+//     }
+//     console.log(mapT);
+//     for (let key in mapS) {
+//         if (mapS[key] !== mapT[key]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+
+// var isAnagram = function (s, t) {
+//     if (s.length !== t.length) {
+//         return false;
+//     }
+//     let mapS = {};
+//     let mapT = {};
+//     for (let i = 0; i < s.length; i++) {
+//         mapS[s.charAt(i)] = (mapS[s.charAt(i)] || 0) + 1;
+//         mapT[t.charAt(i)] = (mapT[t.charAt(i)] || 0) + 1;
+//     }
+//     for (let key in mapS) {
+//         if (mapS[key] !== mapT[key]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
 
 var isAnagram = function (s, t) {
     if (s.length !== t.length) {
         return false;
+    } else {
+        return s.split("").sort().join("") === t.split("").sort().join("");
     }
-    let mapS = {};
-    let mapT = {};
-    for (let i = 0; i < s.length; i++) {
-        mapS[s.charAt(i)] = (mapS[s.charAt(i)] || 0) + 1;
-        mapT[t.charAt(i)] = (mapT[t.charAt(i)] || 0) + 1;
-    }
-    for (let key in mapS) {
-        if (mapS[key] !== mapT[key]) {
-            return false;
-        }
-    }
-    return true;
 };
 
 // console.log(isAnagram("rat", "car"));// false
