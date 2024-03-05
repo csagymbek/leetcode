@@ -25,11 +25,28 @@
 // Example 3:
 // Input: arr = [10,11,12]
 // Output: 66
- 
+
 // Constraints:
 // 1 <= arr.length <= 100
 // 1 <= arr[i] <= 1000
- 
+
 // Follow up:
 // Could you solve this problem in O(n) time complexity?
 
+var sumOddLengthSubarrays = function (arr) {
+    let sum = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i; j < arr.length; j++) {
+            const subarray_length = j - i + 1;
+            const is_odd_length_subarray = subarray_length % 2 !== 0;
+            if (is_odd_length_subarray === false) continue;
+
+            // looping from start point to end point and adding them
+            for (let k = i; k <= j; k++) {
+                sum += arr[k];
+            }
+        }
+    }
+    return sum;
+};
