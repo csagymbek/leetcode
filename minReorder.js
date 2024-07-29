@@ -8,16 +8,16 @@
 // It's guaranteed that each city can reach city 0 after reorder.
 
 var minReorder = function (n, connections) {
+    const visited = new Set();
     const graph = Array.from({ length: n }, () => []);
-    const set = new Set();
     let count = 0;
     for (let [a, b] of connections) {
         graph[a].push(b);
         graph[b].push(a);
-        set.add(a + ", " + b);
+        visited.add(a + ', ' + b);
     }
     function dfs(node, parent) {
-        if (set.has(parent + ", " + node)) {
+        if (visited.has(parent + ', ' + node)) {
             count++;
         }
         for (let n of graph[node]) {
@@ -27,7 +27,7 @@ var minReorder = function (n, connections) {
             dfs(n, node);
         }
     }
-    dfs(0, -1);
+    dfs(0, n + 1);
     return count;
 };
 
