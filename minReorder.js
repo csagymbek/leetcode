@@ -14,10 +14,10 @@ var minReorder = function (n, connections) {
     for (let [a, b] of connections) {
         graph[a].push(b);
         graph[b].push(a);
-        set.add(a + "," + b);
+        set.add(a + ", " + b);
     }
     function dfs(node, parent) {
-        if (set.has(parent + "," + node)) {
+        if (set.has(parent + ", " + node)) {
             count++;
         }
         for (let n of graph[node]) {
