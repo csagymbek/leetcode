@@ -27,5 +27,25 @@ const dfs = (isConnected, i, visited) => {
     }
 };
 
+var findCircleNum = function (isConnected) {
+    let total = 0;
+    const visited = new Set();
+    for (let i = 0; i < isConnected.length; i++) {
+        if (!visited.has(i)) {
+            dfs(i);
+            total++;
+        }
+    }
+    function dfs(i) {
+        visited.add(i);
+        for (let j = 0; j < isConnected.length; j++) {
+            if (isConnected[i][j] === 1 && !visited.has(j)) {
+                dfs(j);
+            }
+        }
+    }
+    return total;
+};
+
 console.log(findCircleNum([[1, 1, 0], [1, 1, 0], [0, 0, 1]]));// 2
 console.log(findCircleNum([[1, 0, 0], [0, 1, 0], [0, 0, 1]]));// 3
